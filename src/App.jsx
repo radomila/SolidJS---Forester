@@ -1,23 +1,24 @@
-import styles from './styles.css';  
 import Dropdown from './components/Dropdown.jsx';
-import LanguageSelect from './components/Language-select.jsx';
+import LanguageSelect from './components/Language-select.jsx';  
+import { useI18n } from "@solid-primitives/i18n";
 
+function App() { 
+  const [t] = useI18n();
 
-function App() {
-  return (
+  return (  
     <div> 
       <div class="pre-header">
-        <button class="update">Upravit</button> 
+        <button class="update">{t('menu.update')}</button> 
         <LanguageSelect/>
       </div>
       <div class="header"> 
         <h3>New Algorithm</h3> 
         <div class="buttons"> 
-          <button>Open All</button>  
-          <button>Close All</button>   
-          <Dropdown/> 
-        </div> 
-      </div>  
+          <button>{t('menu.open')}</button>  
+          <button>{t('menu.close')}</button>   
+          <Dropdown/>  
+        </div>   
+      </div>   
     </div>
   );
 }

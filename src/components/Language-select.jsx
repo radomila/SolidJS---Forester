@@ -1,15 +1,13 @@
-import { clearDelegatedEvents, render } from "solid-js/web";
-import styles from '../styles.css'; 
-import { createSignal } from "solid-js";  
+import { useI18n } from "@solid-primitives/i18n"; 
 
 function Dropdown() { 
-  const [isOpen, setIsOpen] = createSignal("Standard");  
+  const [_, { locale }] = useI18n();  
 
     return ( 
       <div> 
         <select onChange={(e) =>{
           const selectedOption = e.target.value; 
-          setIsOpen(selectedOption);
+          locale(selectedOption);
         }}>  
           <option value="cs">CS</option> 
           <option value="en">EN</option> 
@@ -17,6 +15,6 @@ function Dropdown() {
       </div> 
      
     )
-  }
+}
 
 export default Dropdown;

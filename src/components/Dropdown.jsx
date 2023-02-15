@@ -1,4 +1,4 @@
-//import styles from '../styles.css'; 
+import styles from '../styles.css'; 
 import ArrowDown from "../icons/arrow-down.png"; 
 import ArrowUp from "../icons/arrow-up.png";
 import { createSignal } from "solid-js";  
