@@ -1,0 +1,43 @@
+.buttonBase { 
+    cursor: pointer; 
+    border: none; 
+    border-radius: 5px;
+    font-size: 16px; 
+    margin: 1rem 1.5rem 1rem; 
+
+}
+
+/* Primary button */
+.buttonPrimary {  
+    composes: buttonBase;
+    background-color: transparent;
+    color: #AEB8B8;  
+    padding: 8px 16px 8px; 
+} 
+
+/* Button for update*/
+.buttonUpdate { 
+    composes: buttonBase;
+    background-color: #06c258; 
+    color: white; 
+    padding: 10px 16px 10px;
+} 
+
+/* Icon - dropdown button*/
+.buttonImage {
+    width: 10px; 
+    padding-left: 5px;
+}  
+
+/* Button for language selection */ 
+.selectionButton { 
+    composes: buttonPrimary;
+    background-color: #AEB8B8;
+    color: white;  
+    padding: 10px; 
+}  
+
+.selectedOption {
+    background-color: white; 
+    color: #AEB8B8;    
+} 

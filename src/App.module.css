@@ -1,3 +1,20 @@
 .App {
   text-align: center;
+} 
+
+/*Layout*/
+.preHeader {
+  display: flex; 
+  justify-content: flex-end; 
+}  
+
+.header {
+  display: flex; 
+  justify-content: space-around;
+}  
+
+.buttons { 
+  display: flex; 
+
 }
+
