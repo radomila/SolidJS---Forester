@@ -4,6 +4,7 @@ import dictionary from "./translations";
 import "./index.css";
 import { createI18nContext, I18nContext } from "@solid-primitives/i18n";
 import App from "./App";
+import { AppStateProvider } from "./contexts/AppStateContext";
 
 const root = document.getElementById("root");
 
@@ -18,7 +19,9 @@ const value = createI18nContext(dictionary, "cs");
 render(
   () => (
     <I18nContext.Provider value={value}>
-      <App />
+      <AppStateProvider>
+        <App />
+      </AppStateProvider>
     </I18nContext.Provider>
   ),
   root
