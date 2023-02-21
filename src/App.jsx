@@ -1,9 +1,11 @@
-import Header from './components/Header';
+import Header from './components/Header'; 
+import Forest from './components/Forest';
 
 function App() {
   return (
     <div>
-      <Header />
+      <Header /> 
+      <Forest />
     </div>
   );
 }

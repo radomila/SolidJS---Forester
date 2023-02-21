@@ -2,7 +2,7 @@
   text-align: center;
 } 
 
-/*Layout*/
+/*Layout, Header*/
 .preHeader {
   display: flex; 
   justify-content: flex-end; 
@@ -18,3 +18,11 @@
 
 }
 
+/*Layout, Forest*/ 
+
+.forestContent {
+  display: flex; 
+  justify-content: center; 
+  flex-wrap: wrap; 
+  gap: 0.5rem;
+}

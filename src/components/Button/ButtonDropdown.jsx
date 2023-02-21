@@ -1,5 +1,5 @@
 import { buttonImage } from './Button.module.css';
-import { createSignal } from "solid-js"; 
+import { createSignal } from "solid-js";  
 import Button from './Button'; 
 import ArrowDown from "../../icons/arrow-down.png";
 import ArrowUp from "../../icons/arrow-up.png";

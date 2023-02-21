@@ -1,0 +1,106 @@
+.nodeBase { 
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
+    width: 70%; 
+    border-width: 1px 1px 1px 5px; 
+    border-style: solid; 
+    border-radius: 5px;  
+    font-size: 14px; 
+    padding-left: 1rem;
+}
+
+.nodeSequence {   
+    composes: nodeBase; 
+    color: #8399FF;
+}
+
+.nodeStep {  
+    composes: nodeBase; 
+    color: #AEB8B8;  
+}  
+
+.nodeSuccess { 
+    composes: nodeBase; 
+    color: #06c258;   
+}  
+
+.nodeWarning { 
+    composes: nodeBase; 
+    color: #F5900C;   
+}  
+
+.nodeError { 
+    composes: nodeBase; 
+    color:  #FF0803; 
+}  
+
+.nodeSelection { 
+    composes: nodeBase; 
+    color: #09BDA8; 
+}  
+ 
+.nodeSwitch { 
+    composes: nodeBase; 
+    color: #FF1570;   
+}  
+
+.nodeTcf { 
+    composes: nodeBase; 
+    color: #026BEB;  
+}  
+
+/* Title */ 
+
+.nodeTitleBase {
+    color: white; 
+    padding: 3px; 
+    margin: 0.5rem 0rem;
+    border-radius: 5px; 
+    font-weight: 500;
+} 
+
+.nodeTitleSequence {   
+    composes: nodeTitleBase; 
+    background-color: #8399FF;
+}
+
+.nodeTitleStep {  
+    composes: nodeTitleBase; 
+    background-color: #AEB8B8;  
+}  
+
+.nodeTitleSuccess { 
+    composes: nodeTitleBase; 
+    background-color: #06c258;   
+}  
+
+.nodeTitleWarning { 
+    composes: nodeTitleBase; 
+    background-color: #F5900C;   
+}  
+
+.nodeTitleError { 
+    composes: nodeTitleBase; 
+    background-color:  #FF0803; 
+}  
+
+.nodeTitleSelection { 
+    composes: nodeTitleBase; 
+    background-color: #09BDA8; 
+}  
+ 
+.nodeTitleSwitch { 
+    composes: nodeTitleBase; 
+    background-color: #FF1570;   
+}  
+
+.nodeTitleTcf { 
+    composes: nodeTitleBase; 
+    background-color: #026BEB;  
+}  
+
+/* Menu - icon */ 
+.kebabMenuIcon { 
+    padding-right: 10px;
+}
