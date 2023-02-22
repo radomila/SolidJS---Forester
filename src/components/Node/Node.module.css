@@ -1,106 +1,122 @@
 .nodeBase { 
-    display: flex; 
-    justify-content: space-between;
-    align-items: center; 
-    width: 70%; 
-    border-width: 1px 1px 1px 5px; 
-    border-style: solid; 
-    border-radius: 5px;  
-    font-size: 14px; 
-    padding-left: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  width: 70%;
+  border-width: 1px 1px 1px 5px;
+  border-style: solid;
+  border-radius: 5px;
+  font-size: 14px;
+  padding-left: 1rem;
 }
 
-.nodeSequence {   
-    composes: nodeBase; 
-    color: #8399FF;
+.nodeSequence {
+  composes: nodeBase;
+  color: #8399ff;
 }
 
-.nodeStep {  
-    composes: nodeBase; 
-    color: #AEB8B8;  
-}  
+.nodeStep {
+  composes: nodeBase;
+  color: #aeb8b8;
+}
 
-.nodeSuccess { 
-    composes: nodeBase; 
-    color: #06c258;   
-}  
+.nodeSuccess {
+  composes: nodeBase;
+  color: #06c258;
+}
 
-.nodeWarning { 
-    composes: nodeBase; 
-    color: #F5900C;   
-}  
+.nodeWarning {
+  composes: nodeBase;
+  color: #f5900c;
+}
 
-.nodeError { 
-    composes: nodeBase; 
-    color:  #FF0803; 
-}  
+.nodeError {
+  composes: nodeBase;
+  color: #ff0803;
+}
 
-.nodeSelection { 
-    composes: nodeBase; 
-    color: #09BDA8; 
-}  
- 
-.nodeSwitch { 
-    composes: nodeBase; 
-    color: #FF1570;   
-}  
+.nodeSelection {
+  composes: nodeBase;
+  color: #09bda8;
+}
 
-.nodeTcf { 
-    composes: nodeBase; 
-    color: #026BEB;  
-}  
+.nodeSwitch {
+  composes: nodeBase;
+  color: #ff1570;
+}
 
-/* Title */ 
+.nodeTcf {
+  composes: nodeBase;
+  color: #026beb;
+}
+
+/* Title */
 
 .nodeTitleBase {
-    color: white; 
-    padding: 3px; 
-    margin: 0.5rem 0rem;
-    border-radius: 5px; 
-    font-weight: 500;
-} 
-
-.nodeTitleSequence {   
-    composes: nodeTitleBase; 
-    background-color: #8399FF;
+  color: white;
+  padding: 3px;
+  margin: 0.5rem 0rem;
+  border-radius: 5px;
+  font-weight: 500;
 }
 
-.nodeTitleStep {  
-    composes: nodeTitleBase; 
-    background-color: #AEB8B8;  
-}  
+.nodeTitleSequence {
+  composes: nodeTitleBase;
+  background-color: #8399ff;
+}
 
-.nodeTitleSuccess { 
-    composes: nodeTitleBase; 
-    background-color: #06c258;   
-}  
+.nodeTitleStep {
+  composes: nodeTitleBase;
+  background-color: #aeb8b8;
+}
 
-.nodeTitleWarning { 
-    composes: nodeTitleBase; 
-    background-color: #F5900C;   
-}  
+.nodeTitleSuccess {
+  composes: nodeTitleBase;
+  background-color: #06c258;
+}
 
-.nodeTitleError { 
-    composes: nodeTitleBase; 
-    background-color:  #FF0803; 
-}  
+.nodeTitleWarning {
+  composes: nodeTitleBase;
+  background-color: #f5900c;
+}
 
-.nodeTitleSelection { 
-    composes: nodeTitleBase; 
-    background-color: #09BDA8; 
-}  
- 
-.nodeTitleSwitch { 
-    composes: nodeTitleBase; 
-    background-color: #FF1570;   
-}  
+.nodeTitleError {
+  composes: nodeTitleBase;
+  background-color: #ff0803;
+}
 
-.nodeTitleTcf { 
-    composes: nodeTitleBase; 
-    background-color: #026BEB;  
-}  
+.nodeTitleSelection {
+  composes: nodeTitleBase;
+  background-color: #09bda8;
+}
+
+.nodeTitleSwitch {
+  composes: nodeTitleBase;
+  background-color: #ff1570;
+}
+
+.nodeTitleTcf {
+  composes: nodeTitleBase;
+  background-color: #026beb;
+}
 
 /* Menu - icon */ 
-.kebabMenuIcon { 
-    padding-right: 10px;
+.menuIcon {
+  padding-right: 10px;
+}
+.menuIconEditMode { 
+  composes: menuIcon; 
+  cursor: pointer;
+}
+
+.nodeTextInput {
+  width: 16rem;
+  border: 1px solid #aeb8b8;
+  border-radius: 5px;
+}
+
+.inputSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }

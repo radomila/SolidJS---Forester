@@ -7,19 +7,17 @@ function Dropdown() {
   const [isEdit, {enableEdit, disableEdit}] = useAppState();
 
   const onUpdateClick = () => {
-    if (isEdit()) { 
-      disableEdit()
-      console.log('Button is disabled');
+    if (!isEdit()) { 
+      enableEdit(); 
     } else {  
-      enableEdit();
-      console.log('Button is enabled');
+      disableEdit()
     }
   } 
 
 
   return (
     <div>
-      <Button onClick={onUpdateClick} type='update'>{t("menu.update")}</Button>
+      <Button onClick={onUpdateClick} type='update'>{t("menu.update")}</Button> 
     </div>
   );
 }

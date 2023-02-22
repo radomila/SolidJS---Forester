@@ -1,0 +1,21 @@
+.menu {
+  position: absolute;
+  list-style-type: none;
+  background-color: white;
+  color: black;
+  font-size: 16px;
+  border: 1px solid #aeb8b8;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.menuItems { 
+  cursor: pointer;
+  padding: 10px;
+  font-weight: 500;
+}
+
+.menuExtra {
+    display: flex; 
+    justify-content: flex-end;
+}
