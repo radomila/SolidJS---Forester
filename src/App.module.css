@@ -22,7 +22,7 @@
 
 .forestContent {
   display: flex; 
-  justify-content: center; 
+  align-items: center; 
+  flex-direction: column;
   flex-wrap: wrap; 
-  gap: 0.5rem;
 } 

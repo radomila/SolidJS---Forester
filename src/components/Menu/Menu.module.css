@@ -1,4 +1,9 @@
+.menuBase {
+  position: absolute;
+}
+
 .menu {
+  width: 8rem;
   position: absolute;
   list-style-type: none;
   background-color: white;
@@ -9,13 +14,23 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
-.menuItems { 
+.menuNodes { 
+  composes: menu;
+  position: absolute;
+  right: 100%;
+}
+
+.menuItems {
   cursor: pointer;
   padding: 10px;
   font-weight: 500;
 }
 
+.menuItems:hover {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
 .menuExtra {
-    display: flex; 
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }

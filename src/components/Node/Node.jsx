@@ -4,7 +4,9 @@ import { useAppState } from "../../contexts/AppStateContext";
 import KebabMenu from "../../icons/kebab-menu.svg";
 import NodeTextInput from "./TextInput";
 import Menu from "../Menu/Menu";
-import {
+import { 
+  nodeSection, 
+  nodeMenuSection,
   nodeBase,
   nodeTitleBase,
   nodeSequence,
@@ -24,7 +26,7 @@ import {
   nodeTitleSwitch,
   nodeTitleTcf,
   menuIconEditMode,
-  inputSection,
+  inputSection, 
 } from "./Node.module.css";
 
 function NodeEdittingMode(props) {
@@ -37,6 +39,7 @@ function NodeEdittingMode(props) {
     setOnClick(!onClick());
   };
 
+  let nodeTitle = props.title;
   let type = props.type;
   let nodeType = "";
   let nodeTitleType = "";
@@ -80,19 +83,21 @@ function NodeEdittingMode(props) {
   }
 
   return (
-    <>
+    <div class={nodeSection}>
       <div class={clsx(nodeType)}>
         <div class={inputSection}>
-          <div class={clsx(nodeTitleType)}>{props.children}</div>
-          {!isEdit() ? (
+          <div class={clsx(nodeTitleType)}>{nodeTitle}</div>
+          {isEdit() ? (
             <NodeTextInput
               value={title()}
               onChange={(e) => setTitle(e.target.value)}
             />
-          ) : title()}
+          ) : (
+            title()
+          )}
         </div>
 
-        {!isEdit() ? (
+        {isEdit() ? (
           <img
             onClick={isClicked}
             src={KebabMenu}
@@ -101,8 +106,8 @@ function NodeEdittingMode(props) {
           />
         ) : null}
       </div>
-      {!isEdit() ? <div>{onClick() ? <Menu /> : null}</div> : null}
-    </>
+      <div class={nodeMenuSection}>{isEdit() ? <div>{onClick() ? <Menu /> : null}</div> : null}</div>
+    </div>
   );
 }
 

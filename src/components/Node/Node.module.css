@@ -1,12 +1,22 @@
+.nodeSection { 
+  display: flex; 
+  flex-direction: column; 
+} 
+
+.nodeMenuSection { 
+  display: flex;
+}
+
 .nodeBase { 
+  width: 40rem; 
   display: flex;
   justify-content: space-between;
-  align-items: center; 
-  width: 70%;
+  align-items: center;  
   border-width: 1px 1px 1px 5px;
   border-style: solid;
   border-radius: 5px;
-  font-size: 14px;
+  font-size: 14px; 
+  margin-top: 1rem;
   padding-left: 1rem;
 }
 
@@ -120,3 +130,4 @@
   align-items: center;
   gap: 1rem;
 }
+
