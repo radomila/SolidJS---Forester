@@ -3,8 +3,8 @@ import { createSignal } from "solid-js";
 import { menuItems, menuNodes } from "./Menu.module.css";
 import Node from "../Node/Node.jsx";
 
-function MenuNodes() { 
-  let isActiveProp; 
+function MenuNodes() {
+  let isActiveProp;
 
   const [isClicked, setIsClicked] = createSignal(false);
   const [isActive, setIsActive] = createSignal("");
@@ -50,6 +50,7 @@ function MenuNodes() {
     }
   };
 
+
   const nodeType = [
     "Step",
     "Success",
@@ -59,7 +60,7 @@ function MenuNodes() {
     "Selection",
     "Switch",
     "Try-Catch-Finally",
-  ];  
+  ];
 
   return (
     <>

@@ -1,6 +1,6 @@
 import { createSignal } from "solid-js";
 
-function AddNodeAfter({addNodeProp}) {
+function AddNodeAfter() {
   const [value, setValue] = createSignal([]); 
 
   return (
