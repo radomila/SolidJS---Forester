@@ -1,3 +1,4 @@
+
 .nodeSection { 
   display: flex; 
   flex-direction: column; 
@@ -18,7 +19,17 @@
   font-size: 14px; 
   margin-top: 1rem;
   padding-left: 1rem;
-}
+} 
+
+.nestedNodeS { 
+  width: 100;
+
+} 
+
+.node{
+  display: flex; 
+  flex-direction: column;
+} 
 
 .nodeSequence {
   composes: nodeBase;

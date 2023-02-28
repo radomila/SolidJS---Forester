@@ -1,7 +1,8 @@
 import Header from './components/Header'; 
-import Forest from './components/Forest';
+import Forest from './components/Forest'; 
+import { forestConfig } from './components/Forest';
 
-function App() {
+function App({nodeP}) {
   return (
     <div>
       <Header /> 
