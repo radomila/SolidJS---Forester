@@ -1,4 +1,4 @@
-import Node from "./Node/Node.jsx";
+import Node from "./Node/Node.jsx"; 
 import { forestContent } from "../App.module.css";
 
 export const forestConfig = [

@@ -1,35 +1,32 @@
+.nodeSection {
+  display: flex;
+  align-items: center;
+}
 
-.nodeSection { 
-  display: flex; 
-  flex-direction: column; 
-} 
-
-.nodeMenuSection { 
+.nodeMenuSection {
   display: flex;
 }
 
-.nodeBase { 
-  width: 40rem; 
-  display: flex;
+.nodeBase {
+  display: flex; 
+  width: 100%;
+  max-width: 50rem;
+  min-width: 44.70rem;
+  flex-grow: 1;
   justify-content: space-between;
-  align-items: center;  
+  align-items: center;
   border-width: 1px 1px 1px 5px;
   border-style: solid;
   border-radius: 5px;
-  font-size: 14px; 
-  margin-top: 1rem;
+  font-size: 14px;
+  margin-bottom: 1rem;
   padding-left: 1rem;
-} 
+}
 
-.nestedNodeS { 
-  width: 100;
-
-} 
-
-.node{
-  display: flex; 
+.node {
+  display: flex;
   flex-direction: column;
-} 
+}
 
 .nodeSequence {
   composes: nodeBase;
@@ -121,24 +118,22 @@
   background-color: #026beb;
 }
 
-/* Menu - icon */ 
-.menuIcon {
+/* Menu - icon */
+
+.menuIconEditMode {
   padding-right: 10px;
-}
-.menuIconEditMode { 
-  composes: menuIcon; 
   cursor: pointer;
 }
 
 .nodeTextInput {
   width: 16rem;
-  border: 1px solid #aeb8b8;
-  border-radius: 5px;
+  border: 1px dashed #aeb8b8;
+  border-radius: 5px; 
 }
 
 .inputSection {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1rem; 
+  color: black;
 }
-

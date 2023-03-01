@@ -1,9 +1,9 @@
-import  clsx  from "clsx";
+import clsx from "clsx";
 import { createSignal } from "solid-js";
 import { useAppState } from "../../contexts/AppStateContext";
 import KebabMenu from "../../icons/kebab-menu.svg";
 import NodeTextInput from "./TextInput";
-import Menu from "../Menu/Menu"; 
+import Menu from "../Menu/Menu";
 import Forest from "../Forest";
 import {
   node,
@@ -40,9 +40,9 @@ function NodeEdittingMode(props) {
   const isClicked = () => {
     setOnClick(!onClick());
   };
-  
-  let nodeChildren = props.children; 
-  
+
+  let nodeChildren = props.children;
+
   let nodeTitle = props.title;
   let type = props.type;
   let nodeType = "";
@@ -88,24 +88,24 @@ function NodeEdittingMode(props) {
 
   return (
     <>
-      <div class={nodeSection}>
-        {/*Typ nodu*/}
-        <div class={clsx( nodeType)}>
-          <div>
-            <div>
-              {/* Sekce pro input, nazev nodu */}
-              <div class={inputSection}>
-                <div class={clsx(nodeTitleType)}>{nodeTitle}</div>
-                {isEdit() ? (
-                  <NodeTextInput
-                    value={title()}
-                    onChange={(e) => setTitle(e.target.value)}
-                  />
-                ) : (
-                  title()
-                )}
-              </div>
-              {/* Button pro menu */}
+      {/*Typ nodu*/}
+      <div class={clsx(nodeType)}>
+        <div>
+          <div class={nodeSection}>
+            {/* Sekce pro input, nazev nodu */}
+            <div class={inputSection}>
+              <div class={clsx(nodeTitleType)}>{nodeTitle}</div>
+              {isEdit() ? (
+                <NodeTextInput
+                  value={title()}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+              ) : (
+                title()
+              )}
+            </div>
+            {/* Button pro menu */}
+            
               {isEdit() ? (
                 <img
                   onClick={isClicked}
@@ -114,18 +114,17 @@ function NodeEdittingMode(props) {
                   alt="kebab-menu"
                 />
               ) : null}
-            </div>
-            <div>
-              {/* Vnorene nody */} 
-              {nodeChildren}
-            </div>
+            
           </div>
-        </div>
 
-        {/* <div class={nodeMenuSection}>
+          {/* Vnorene nody */}
+          {nodeChildren}
+        </div>
+      </div>
+
+      {/* <div class={nodeMenuSection}>
           {isEdit() ? <div>{onClick() ? <Menu /> : null}</div> : null}
         </div> */}
-      </div>
     </>
   );
 }
