@@ -6,7 +6,7 @@ function App({nodeP}) {
   return (
     <div>
       <Header /> 
-      <Forest />
+      <Forest nodes={forestConfig}/>
     </div>
   );
 }

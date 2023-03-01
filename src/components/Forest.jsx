@@ -5,22 +5,27 @@ export const forestConfig = [
   {
     type: "sequence",
     title: "Sequence",
+    open: false,
   },
   {
     type: "sequence",
     title: "Sequence",
+    open: true,
     nestedNodes: [
       {
         type: "step",
         title: "Step",
+        open: true,
       },
       {
         type: "sequence",
         title: "Sequence",
+        open: true,
         nestedNodes: [
           {
             type: "sequence",
             title: "Sequence",
+            open: true,
             nestedNodes: [
               {
                 type: "step",
@@ -61,11 +66,11 @@ function Forest(props) {
   return (
     <>
       <div class={forestContent}>
-        {forestConfig.map((node, index) => {
+        {nodes.map((node, index) => {
           return (
-            <Node key={index} type={node.type} title={node.title}>
-              {node.nestedNodes && (
-                <Forest node={node.nestedNodes} depth={depth + 1} />
+            <Node key={node.title + index} type={node.type} title={node.title}>
+              {node.nestedNodes && node.open && (
+                <Forest nodes={node.nestedNodes} depth={depth + 1} />
               )}
             </Node>
           );
