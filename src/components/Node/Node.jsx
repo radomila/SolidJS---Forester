@@ -1,13 +1,14 @@
 import clsx from "clsx";
-import { createSignal } from "solid-js";
+import { createSignal, createEffect } from "solid-js";
 import { useAppState } from "../../contexts/AppStateContext";
 import KebabMenu from "../../icons/kebab-menu.svg";
+import ArrowDownOpen from "../../icons/arrow-down-open.svg";
+import ArrowRightClosed from "../../icons/arrow-right-closed.svg";
 import NodeTextInput from "./TextInput";
+import forestConfig from "../Forest.jsx";
 import Menu from "../Menu/Menu";
-import Forest from "../Forest";
 import {
-  node,
-  nodeSection,
+  nodeSection, 
   nodeMenuSection,
   nodeBase,
   nodeTitleBase,
@@ -29,6 +30,7 @@ import {
   nodeTitleTcf,
   menuIconEditMode,
   inputSection,
+  toggleArrow,
 } from "./Node.module.css";
 
 function NodeEdittingMode(props) {
@@ -41,8 +43,28 @@ function NodeEdittingMode(props) {
     setOnClick(!onClick());
   };
 
-  let nodeChildren = props.children;
+  const ArrowOpened = (
+    <img
+      class={toggleArrow}
+      onClick={() => {
+        props.onNodeOpen(props.id);
+      }}
+      src={ArrowDownOpen}
+      alt="arrow-down-open"
+    />
+  );
+  const ArrowClosed = (
+    <img
+      class={toggleArrow}
+      onClick={() => {
+        props.onNodeOpen(props.id);
+      }}
+      src={ArrowRightClosed}
+      alt="arrow-right-closed"
+    />
+  );
 
+  let nodeChildren = props.children;
   let nodeTitle = props.title;
   let type = props.type;
   let nodeType = "";
@@ -92,6 +114,8 @@ function NodeEdittingMode(props) {
       <div class={clsx(nodeType)}>
         <div>
           <div class={nodeSection}>
+            {props.open ? ArrowOpened : ArrowClosed}
+
             {/* Sekce pro input, nazev nodu */}
             <div class={inputSection}>
               <div class={clsx(nodeTitleType)}>{nodeTitle}</div>
@@ -105,16 +129,15 @@ function NodeEdittingMode(props) {
               )}
             </div>
             {/* Button pro menu */}
-            
-              {isEdit() ? (
-                <img
-                  onClick={isClicked}
-                  src={KebabMenu}
-                  class={menuIconEditMode}
-                  alt="kebab-menu"
-                />
-              ) : null}
-            
+
+            {isEdit() ? (
+              <img
+                onClick={isClicked}
+                src={KebabMenu}
+                class={menuIconEditMode}
+                alt="kebab-menu"
+              />
+            ) : null}
           </div>
 
           {/* Vnorene nody */}
@@ -122,9 +145,9 @@ function NodeEdittingMode(props) {
         </div>
       </div>
 
-      {/* <div class={nodeMenuSection}>
-          {isEdit() ? <div>{onClick() ? <Menu /> : null}</div> : null}
-        </div> */}
+      <div class={nodeMenuSection}>
+        {isEdit() ? <div>{onClick() ? <Menu /> : null}</div> : null}
+      </div>
     </>
   );
 }

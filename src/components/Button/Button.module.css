@@ -12,7 +12,7 @@
     composes: buttonBase;
     background-color: transparent;
     color: #AEB8B8;  
-    padding: 8px 16px 8px; 
+    padding: 8px 16px 8px;  
 } 
 
 /* Button for update*/

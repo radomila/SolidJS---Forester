@@ -136,4 +136,9 @@
   align-items: center;
   gap: 1rem; 
   color: black;
+} 
+
+/* Toggle arrow */ 
+.toggleArrow {
+  padding-right: 10px;
 }
