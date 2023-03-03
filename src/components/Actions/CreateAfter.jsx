@@ -1,6 +1,6 @@
 import { createSignal } from "solid-js";
 
-function AddNodeAfter() {
+function CreateAfter() {
   const [value, setValue] = createSignal([]); 
 
   return (
@@ -12,4 +12,4 @@ function AddNodeAfter() {
   );
 }
 
-export default AddNodeAfter;
+export default CreateAfter;

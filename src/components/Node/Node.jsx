@@ -5,10 +5,9 @@ import KebabMenu from "../../icons/kebab-menu.svg";
 import ArrowDownOpen from "../../icons/arrow-down-open.svg";
 import ArrowRightClosed from "../../icons/arrow-right-closed.svg";
 import NodeTextInput from "./TextInput";
-import forestConfig from "../Forest.jsx";
 import Menu from "../Menu/Menu";
 import {
-  nodeSection, 
+  nodeSection,
   nodeMenuSection,
   nodeBase,
   nodeTitleBase,
@@ -37,7 +36,7 @@ function NodeEdittingMode(props) {
   const [isEdit] = useAppState();
 
   const [onClick, setOnClick] = createSignal(false);
-  const [title, setTitle] = createSignal("");
+  const [title, setTitle] = createSignal(""); 
 
   const isClicked = () => {
     setOnClick(!onClick());
@@ -71,35 +70,35 @@ function NodeEdittingMode(props) {
   let nodeTitleType = "";
 
   switch (true) {
-    case type == "sequence":
+    case type == "Sequence":
       nodeType = nodeSequence;
       nodeTitleType = nodeTitleSequence;
       break;
-    case type == "warning":
+    case type == "Warning":
       nodeType = nodeWarning;
       nodeTitleType = nodeTitleWarning;
       break;
-    case type == "success":
+    case type == "Success":
       nodeType = nodeSuccess;
       nodeTitleType = nodeTitleSuccess;
       break;
-    case type == "step":
+    case type == "Step":
       nodeType = nodeStep;
       nodeTitleType = nodeTitleStep;
       break;
-    case type == "error":
+    case type == "Error":
       nodeType = nodeError;
       nodeTitleType = nodeTitleError;
       break;
-    case type == "selection":
+    case type == "Selection":
       nodeType = nodeSelection;
       nodeTitleType = nodeTitleSelection;
       break;
-    case type == "switch":
+    case type == "Switch":
       nodeType = nodeSwitch;
       nodeTitleType = nodeTitleSwitch;
       break;
-    case type == "tcf":
+    case type == "Try-Catch-Finally":
       nodeType = nodeTcf;
       nodeTitleType = nodeTitleTcf;
       break;
@@ -144,9 +143,19 @@ function NodeEdittingMode(props) {
           {nodeChildren}
         </div>
       </div>
-
+    
       <div class={nodeMenuSection}>
-        {isEdit() ? <div>{onClick() ? <Menu /> : null}</div> : null}
+        {isEdit() ? (
+          <div>
+            {onClick() ? (
+              <Menu
+                onNodeDelete={props.onNodeDelete} 
+                onCreateAfter={props.onCreateAfter}
+                id={props.id}
+              />
+            ) : null}
+          </div>
+        ) : null}
       </div>
     </>
   );
