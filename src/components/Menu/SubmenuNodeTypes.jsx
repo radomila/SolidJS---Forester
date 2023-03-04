@@ -21,13 +21,24 @@ function MenuNodes(props) {
 
   const isClickedFunc = (node) => {
     setIsClicked(!isClicked());
-    setIsActive(
-      props.onCreateAfter(props.id, {
-        type: node,
-        title: node,
-        open: true,
-      })
-    );
+
+    if (props.type === "Before") {
+      setIsActive(
+        props.onCreateBefore(props.id, {
+          type: node,
+          title: node,
+          open: true,
+        })
+      );
+    } else if (props.type === "After") {
+      setIsActive(
+        props.onCreateAfter(props.id, {
+          type: node,
+          title: node,
+          open: true,
+        })
+      );
+    }
   };
 
   return (

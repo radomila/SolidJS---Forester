@@ -98,7 +98,14 @@ function Forest(props) {
   const onNodeDelete = (id) => { 
     const newNodesDelete = nodesLocal().filter((node) => node.id !== id); 
     setNodesLocal(newNodesDelete);
-  }; 
+  };  
+
+  const onCreateBefore = (id, node) => {
+    const newNodesAddedBefore = [...nodesLocal()]; 
+    const indexBefore = newNodesAddedBefore.findIndex((n) => n.id === id); 
+    newNodesAddedBefore.splice(indexBefore, 0, node);  
+    setNodesLocal(newNodesAddedBefore);
+  } 
 
   const onCreateAfter = (id, node) => {
     const newNodesAdded = [...nodesLocal()]; 
@@ -116,7 +123,8 @@ function Forest(props) {
             <>
               <Node
                 onNodeOpen={onNodeOpen}
-                onNodeDelete={onNodeDelete} 
+                onNodeDelete={onNodeDelete}  
+                onCreateBefore={onCreateBefore}
                 onCreateAfter={onCreateAfter}
                 key={node.title + index}
                 type={node.type}

@@ -3,35 +3,41 @@ import { menu, menuItems, menuBase } from "./Menu.module.css";
 import SubmenuNodeTypes from "./SubmenuNodeTypes";
 
 function Menu(props) {
-  const [value, setValue] = createSignal([]);
-  const [isDisplayed, setIsDisplayed] = createSignal(false);
+  const [isDisplayed, setIsDisplayed] = createSignal(false); 
+  const [type, setType] = createSignal();
 
   const MouseOverFunc = () => {
     setIsDisplayed(!isDisplayed());
-  };
-
-  const addNode = () => {
-    const x = [...value(), []];
-    setValue(x);
-  };
+  };  
 
   return (
     <>
       <div class={menuBase}>
         <div class={menu}>
-          <li onClick={MouseOverFunc} class={menuItems}>
+          <li 
+            onCreateBefore={props.onCreateBefore}
+            onClick={() =>{
+              MouseOverFunc(); 
+              setType("Before")
+            }}
+            class={menuItems}
+          >
             Create Before
           </li>
-          <li 
+          <li
             onCreateAfter={props.onCreateAfter}
             onClick={() => {
               MouseOverFunc(); 
+              setType("After")
             }}
             class={menuItems}
           >
             Create After
           </li>
-          <li onClick={MouseOverFunc} class={menuItems}>
+          <li onClick={() => {
+            MouseOverFunc(); 
+            setType("Inside")
+          }} class={menuItems}>
             Create Inside
           </li>
           <li
@@ -44,7 +50,12 @@ function Menu(props) {
           </li>
         </div>
         {isDisplayed() ? (
-          <SubmenuNodeTypes onCreateAfter={props.onCreateAfter} id={props.id}/>
+          <SubmenuNodeTypes
+            onCreateBefore={props.onCreateBefore}
+            onCreateAfter={props.onCreateAfter} 
+            type={type()}
+            id={props.id}
+          />
         ) : null}
       </div>
     </>
