@@ -8,6 +8,7 @@ export const forestConfig = [
     type: "Sequence",
     title: "Sequence",
     open: true,
+    nestedNodes: [],
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ export const forestConfig = [
         type: "Step",
         title: "Step",
         open: true,
+        nestedNodes: [],
       },
       {
         id: 4,
@@ -38,18 +40,21 @@ export const forestConfig = [
                 type: "Step",
                 title: "Step",
                 open: true,
+                nestedNodes: [],
               },
               {
                 id: 7,
                 type: "Error",
                 title: "Error",
                 open: true,
+                nestedNodes: [],
               },
               {
                 id: 8,
                 type: "Success",
                 title: "Success",
                 open: true,
+                nestedNodes: [],
               },
             ],
           },
@@ -60,12 +65,14 @@ export const forestConfig = [
         type: "Success",
         title: "Success",
         open: true,
+        nestedNodes: [],
       },
       {
         id: 10,
         type: "Selection",
         title: "Selection",
         open: true,
+        nestedNodes: [],
       },
     ],
   },
@@ -79,7 +86,7 @@ function Forest(props) {
     return null;
   }
 
-  const [nodesLocal, setNodesLocal] = createSignal(nodes); 
+  const [nodesLocal, setNodesLocal] = createSignal(nodes);
 
   const onNodeOpen = (id) => {
     const newNodes = nodesLocal().map((node) => {
@@ -95,25 +102,31 @@ function Forest(props) {
     setNodesLocal(newNodes);
   };
 
-  const onNodeDelete = (id) => { 
-    const newNodesDelete = nodesLocal().filter((node) => node.id !== id); 
-    setNodesLocal(newNodesDelete);
-  };  
-
   const onCreateBefore = (id, node) => {
-    const newNodesAddedBefore = [...nodesLocal()]; 
-    const indexBefore = newNodesAddedBefore.findIndex((n) => n.id === id); 
-    newNodesAddedBefore.splice(indexBefore, 0, node);  
+    const newNodesAddedBefore = [...nodesLocal()];
+    const indexBefore = newNodesAddedBefore.findIndex((n) => n.id === id);
+    newNodesAddedBefore.splice(indexBefore, 0, node);
     setNodesLocal(newNodesAddedBefore);
-  } 
+  };
 
   const onCreateAfter = (id, node) => {
-    const newNodesAdded = [...nodesLocal()]; 
-    const index = newNodesAdded.findIndex((n) => n.id === id); 
-    newNodesAdded.splice(index + 1, 0, node);  
+    const newNodesAdded = [...nodesLocal()];
+    const index = newNodesAdded.findIndex((n) => n.id === id);
+    newNodesAdded.splice(index + 1, 0, node);
     setNodesLocal(newNodesAdded);
-  } 
+  };
 
+  const onCreateInside = (id, node) => {
+    const newList = [...nodesLocal()];
+    const index = newList.findIndex((n) => n.id === id);
+    newList[index].nestedNodes.splice(0, 0, node);
+    setNodesLocal(newList);
+  };
+
+  const onNodeDelete = (id) => {
+    const newNodesDelete = nodesLocal().filter((node) => node.id !== id);
+    setNodesLocal(newNodesDelete);
+  };
 
   return (
     <>
@@ -123,15 +136,16 @@ function Forest(props) {
             <>
               <Node
                 onNodeOpen={onNodeOpen}
-                onNodeDelete={onNodeDelete}  
+                onNodeDelete={onNodeDelete}
                 onCreateBefore={onCreateBefore}
+                onCreateInside={onCreateInside}
                 onCreateAfter={onCreateAfter}
                 key={node.title + index}
                 type={node.type}
                 title={node.title}
                 id={node.id}
                 open={node.open}
-              > 
+              >
                 {node.nestedNodes && node.open && (
                   <Forest nodes={node.nestedNodes} depth={depth + 1} />
                 )}

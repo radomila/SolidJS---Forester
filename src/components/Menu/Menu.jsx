@@ -34,7 +34,9 @@ function Menu(props) {
           >
             Create After
           </li>
-          <li onClick={() => {
+          <li
+            onCreateInside={props.onCreateInside}  
+            onClick={() => {
             MouseOverFunc(); 
             setType("Inside")
           }} class={menuItems}>
@@ -53,6 +55,7 @@ function Menu(props) {
           <SubmenuNodeTypes
             onCreateBefore={props.onCreateBefore}
             onCreateAfter={props.onCreateAfter} 
+            onCreateInside={props.onCreateInside}
             type={type()}
             id={props.id}
           />

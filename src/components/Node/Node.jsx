@@ -151,7 +151,8 @@ function NodeEdittingMode(props) {
               <Menu
                 onNodeDelete={props.onNodeDelete} 
                 onCreateBefore={props.onCreateBefore}
-                onCreateAfter={props.onCreateAfter}
+                onCreateAfter={props.onCreateAfter} 
+                onCreateInside={props.onCreateInside}
                 id={props.id}
               />
             ) : null}

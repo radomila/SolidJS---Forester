@@ -38,6 +38,14 @@ function MenuNodes(props) {
           open: true,
         })
       );
+    } else if (props.type === "Inside") {
+      setIsActive(
+        props.onCreateInside(props.id, {
+          type: node,
+          title: node,
+          open: true,
+        })
+      );
     }
   };
 
