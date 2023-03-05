@@ -11,8 +11,7 @@ function Menu(props) {
   };  
 
   return (
-    <>
-      <div class={menuBase}>
+    <div class={menuBase}>
         <div class={menu}>
           <li 
             onCreateBefore={props.onCreateBefore}
@@ -60,8 +59,7 @@ function Menu(props) {
             id={props.id}
           />
         ) : null}
-      </div>
-    </>
+    </div>
   );
 }
 

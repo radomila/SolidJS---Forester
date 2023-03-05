@@ -86,7 +86,7 @@ function App(props) {
       if (node.id === id) {
         return {
           ...node,
-          open: !node.open,
+          open: !node.open, 
         };
       } else {
         return node;
@@ -133,9 +133,9 @@ function App(props) {
   };
 
   const closeAllNodes = (nodes) => {
-    return nodes.map((closeNode) => {
+    return nodes.map((node) => {
       return {
-        ...closeNode,
+        ...node,
         open: false,
         nestedNodes: closeAllNodes(closeNode.nestedNodes),
       };
@@ -154,11 +154,11 @@ function App(props) {
   };
 
   const openAllNodes = (nodes) => {
-    return nodes.map((openNode) => {
+    return nodes.map((node) => {
       return {
-        ...openNode,
+        ...node,
         open: true,
-        nestedNodes: openAllNodes(openNode.nestedNodes),
+        nestedNodes: openAllNodes(node.nestedNodes),
       };
     });
   };

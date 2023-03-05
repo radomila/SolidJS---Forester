@@ -1,26 +1,21 @@
 .nodeSection {
   display: flex;
-  align-items: center;
-}
+  align-items: center; 
+  justify-content: flex-start;
+} 
 
 .nodeMenuSection {
   display: flex;
 }
 
-.nodeBase {
-  display: flex; 
-  width: 100%;
-  max-width: 50rem;
-  min-width: 44.70rem;
-  flex-grow: 1;
-  justify-content: space-between;
-  align-items: center;
+.nodeBase { 
   border-width: 1px 1px 1px 5px;
   border-style: solid;
   border-radius: 5px;
   font-size: 14px;
-  margin-bottom: 1rem;
-  padding-left: 1rem;
+  width: 95%;
+  margin: 1rem;
+  margin-top: 0rem;
 }
 
 .node {
@@ -120,13 +115,12 @@
 
 /* Menu - icon */
 
-.menuIconEditMode {
-  padding-right: 10px;
-  cursor: pointer;
+.menuIconEditMode { 
+  cursor: pointer; 
 }
 
 .nodeTextInput {
-  width: 16rem;
+  width: 100%;
   border: 1px dashed #aeb8b8;
   border-radius: 5px; 
 }
@@ -136,9 +130,11 @@
   align-items: center;
   gap: 1rem; 
   color: black;
+  width: 100%;
 } 
 
 /* Toggle arrow */ 
-.toggleArrow {
+.toggleArrow { 
+  padding-left: 10px;
   padding-right: 10px;
 }

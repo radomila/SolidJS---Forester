@@ -1,10 +1,12 @@
-.menuBase {
-  position: absolute;
+.menuBase { 
+  position: relative;
+  display: flex;
 }
 
 .menu {
-  width: 8rem;
-  position: absolute;
+  width: 8rem; 
+  position: absolute; 
+  right: 0;
   list-style-type: none;
   background-color: white;
   color: black;
@@ -16,8 +18,7 @@
 
 .menuNodes { 
   composes: menu;
-  position: absolute;
-  right: 100%;
+  right: 8rem;
 }
 
 .menuItems {
