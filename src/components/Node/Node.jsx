@@ -152,7 +152,7 @@ function NodeEdittingMode(props) {
                 onNodeDelete={props.onNodeDelete} 
                 onCreateBefore={props.onCreateBefore}
                 onCreateAfter={props.onCreateAfter} 
-                onCreateInside={props.onCreateInside}
+                onCreateInside={props.onCreateInside }
                 id={props.id}
               />
             ) : null}

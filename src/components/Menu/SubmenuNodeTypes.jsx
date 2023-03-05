@@ -27,7 +27,8 @@ function MenuNodes(props) {
         props.onCreateBefore(props.id, {
           type: node,
           title: node,
-          open: true,
+          open: true, 
+          nestedNodes: []
         })
       );
     } else if (props.type === "After") {
@@ -35,17 +36,19 @@ function MenuNodes(props) {
         props.onCreateAfter(props.id, {
           type: node,
           title: node,
-          open: true,
+          open: true, 
+          nestedNodes: []
         })
       );
     } else if (props.type === "Inside") {
-      setIsActive(
-        props.onCreateInside(props.id, {
+      setIsActive( 
+        props.onCreateInside(props.id,{
           type: node,
           title: node,
           open: true,
+          nestedNodes: []
         })
-      );
+      )
     }
   };
 
