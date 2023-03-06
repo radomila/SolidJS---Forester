@@ -1,6 +1,6 @@
 import { createSignal } from "solid-js";
 import Node from "./Node/Node.jsx";
-import { forestContent } from "../App.module.css";
+import { forestContentStandard, forestContentCompact } from "../App.module.css";
 
 function Forest(props) {
   let { depth = 0 } = props;
@@ -13,7 +13,13 @@ function Forest(props) {
 
   return (
     <>
-      <div class={forestContent}>
+      <div
+        class={`${
+          props.mode === "Standard"
+            ? forestContentStandard
+            : forestContentCompact
+        }`}
+      >
         {props.nodes.map((node, index) => {
           return (
             <>
@@ -28,9 +34,11 @@ function Forest(props) {
                 title={node.title}
                 id={node.id}
                 open={node.open}
+                mode={props.mode}
               >
                 {node.nestedNodes && node.open && (
                   <Forest
+                    mode={props.mode}
                     nodes={node.nestedNodes}
                     depth={depth + 1}
                     onNodeOpen={props.onNodeOpen}

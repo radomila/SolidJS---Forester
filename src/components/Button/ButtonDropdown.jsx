@@ -1,14 +1,15 @@
-import { buttonImage } from './Button.module.css';
-import { createSignal } from "solid-js";  
-import Button from './Button'; 
+import { buttonImage } from "./Button.module.css";
+import { createSignal } from "solid-js";
+import Button from "./Button";
+import Standard from "../Menu/Standard";
 import ArrowDown from "../../icons/arrow-down.png";
 import ArrowUp from "../../icons/arrow-up.png";
 
-function Dropdown() {
+function Dropdown(props) {
   const [isOpen, setIsOpen] = createSignal(false);
 
   const DropdownOpen = () => {
-    console.log(setIsOpen(!isOpen()));
+    setIsOpen(!isOpen());
   };
 
   const ArrowOpened = <img class={buttonImage} src={ArrowUp} />;
@@ -16,15 +17,11 @@ function Dropdown() {
 
   return (
     <>
-      <Button type='primary' onClick={DropdownOpen}>
-        Standard
+      <Button type="primary" onClick={DropdownOpen}>
+        {props.mode}
         {!isOpen() ? ArrowClosed : ArrowOpened}
+        {isOpen() && <Standard onClickItem={props.onClickItem} />}
       </Button>
-
-      {isOpen() && (
-        //TODO: dropdown
-        <></>
-      )}
     </>
   );
 }

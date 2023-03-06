@@ -23,7 +23,7 @@ function Header(props) {
           <Button onClick={() => props.closeAllFunc()} type="primary">
             {t("menu.close")}
           </Button>
-          <ButtonDropdown />
+          <ButtonDropdown onClickItem={props.onClickItem} mode={props.mode}/>
         </div>
       </div>
     </div>

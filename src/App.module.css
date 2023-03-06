@@ -1,27 +1,32 @@
 .App {
   text-align: center;
-} 
+}
 
 /*Layout, Header*/
 .preHeader {
-  display: flex; 
-  justify-content: flex-end; 
-}  
-
-.header {
-  display: flex; 
-  justify-content: space-around;
-}  
-
-.buttons { 
-  display: flex; 
-
+  display: flex;
+  justify-content: flex-end;
 }
 
-/*Layout, Forest*/ 
+.header {
+  display: flex;
+  justify-content: space-around;
+}
 
-.forestContent {
-  display: flex; 
-  align-items: center; 
-  flex-direction: column; 
-} 
+.buttons {
+  display: flex;
+}
+
+/*Layout, Forest*/
+
+.forestContentStandard {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.forestContentCompact {
+  composes: forestContentStandard;
+  align-items: flex-start; 
+  margin-left: 2rem;
+}

@@ -1,11 +1,11 @@
-.menuBase { 
+.menuBase {
   position: relative;
   display: flex;
 }
 
 .menu {
-  width: 8rem; 
-  position: absolute; 
+  width: 8rem;
+  position: absolute;
   right: 0;
   list-style-type: none;
   background-color: white;
@@ -16,7 +16,7 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
-.menuNodes { 
+.menuNodes {
   composes: menu;
   right: 8rem;
 }
@@ -34,4 +34,11 @@
 .menuExtra {
   display: flex;
   justify-content: flex-end;
+}
+
+.menuStandard { 
+  composes: menu; 
+  width: auto;
+  color: #aeb8b8;
+  padding: 16px; 
 }

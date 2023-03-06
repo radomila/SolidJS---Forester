@@ -7,9 +7,7 @@ import ArrowRightClosed from "../../icons/arrow-right-closed.svg";
 import NodeTextInput from "./TextInput";
 import Menu from "../Menu/Menu";
 import {
-  node,
   nodeSection,
-  nodeMenuSection,
   nodeBase,
   nodeTitleBase,
   nodeSequence,
@@ -38,6 +36,7 @@ function NodeEdittingMode(props) {
 
   const [onClick, setOnClick] = createSignal(false);
   const [title, setTitle] = createSignal("");
+  const [nodeStyle, setNodeStyle] = createSignal("");
 
   const isClicked = () => {
     setOnClick(!onClick());
@@ -63,6 +62,8 @@ function NodeEdittingMode(props) {
       alt="arrow-right-closed"
     />
   );
+
+
 
   let nodeChildren = props.children;
   let nodeTitle = props.title;
@@ -111,10 +112,9 @@ function NodeEdittingMode(props) {
   return (
     <>
       {/*Typ nodu*/}
-      <div class={clsx(nodeType)}>
+      <div class={`${props.mode === 'Standard' ? nodeType : ''}`}>
         <div class={nodeSection}>
           {props.open ? ArrowOpened : ArrowClosed}
-
           {/* Sekce pro input, nazev nodu */}
           <div class={inputSection}>
             <div class={clsx(nodeTitleType)}>{nodeTitle}</div>

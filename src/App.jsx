@@ -79,14 +79,15 @@ export const forestConfig = [
 ];
 
 function App(props) {
-  const [nodesLocal, setNodesLocal] = createSignal(forestConfig);
+  const [nodesLocal, setNodesLocal] = createSignal(forestConfig); 
+  const [mode, setMode] = createSignal("Standard");
 
   const onNodeOpen = (id) => {
     const newNodes = nodesLocal().map((node) => {
       if (node.id === id) {
         return {
           ...node,
-          open: !node.open, 
+          open: !node.open,
         };
       } else {
         return node;
@@ -125,7 +126,7 @@ function App(props) {
     const closedNodes = nodesLocal().map((node) => {
       return {
         ...node,
-        open: false, 
+        open: false,
         nestedNodes: closeAllNodes(node.nestedNodes),
       };
     });
@@ -137,7 +138,7 @@ function App(props) {
       return {
         ...node,
         open: false,
-        nestedNodes: closeAllNodes(closeNode.nestedNodes),
+        nestedNodes: closeAllNodes(node.nestedNodes),
       };
     });
   };
@@ -161,12 +162,22 @@ function App(props) {
         nestedNodes: openAllNodes(node.nestedNodes),
       };
     });
+  }; 
+
+  const onClickItem = (type) => {
+    setMode(type);
   };
 
   return (
     <div>
-      <Header closeAllFunc={closeAllFunc} openAllFunc={openAllFunc} />
+      <Header
+        closeAllFunc={closeAllFunc}
+        openAllFunc={openAllFunc}
+        onClickItem={onClickItem} 
+        mode={mode()}
+      />
       <Forest
+        mode={mode()}
         nodes={nodesLocal()}
         onNodeOpen={onNodeOpen}
         onCreateBefore={onCreateBefore}
