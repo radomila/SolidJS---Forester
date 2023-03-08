@@ -79,7 +79,7 @@ export const forestConfig = [
 ];
 
 function App(props) {
-  const [nodesLocal, setNodesLocal] = createSignal(forestConfig); 
+  const [nodesLocal, setNodesLocal] = createSignal(forestConfig);
   const [mode, setMode] = createSignal("Standard");
 
   const onNodeOpen = (id) => {
@@ -118,8 +118,28 @@ function App(props) {
   };
 
   const onNodeDelete = (id) => {
-    const newNodesDelete = nodesLocal().filter((n) => n.id !== id);
-    setNodesLocal(newNodesDelete);
+    const newForest = nodesLocal().filter((n) => {
+      if (n.id === id) {
+        return false;
+      } else if (n.nestedNodes) {
+        const nestedItems = onNestedNodeDelete(n.nestedNodes, id);
+        n.nestedNodes = nestedItems;
+      }
+      return true;
+    });
+    setNodesLocal(newForest);
+  };
+
+  const onNestedNodeDelete = (nodes, id) => {
+    return nodes.filter((n) => {
+      if (n.id === id) {
+        return false;
+      } else if (n.nestedNodes) {
+        const nestedItems = onNestedNodeDelete(n.nestedNodes, id);
+        n.nestedNodes = nestedItems;
+      }
+      return true;
+    });
   };
 
   const closeAllFunc = () => {
@@ -162,7 +182,7 @@ function App(props) {
         nestedNodes: openAllNodes(node.nestedNodes),
       };
     });
-  }; 
+  };
 
   const onClickItem = (type) => {
     setMode(type);
@@ -173,7 +193,7 @@ function App(props) {
       <Header
         closeAllFunc={closeAllFunc}
         openAllFunc={openAllFunc}
-        onClickItem={onClickItem} 
+        onClickItem={onClickItem}
         mode={mode()}
       />
       <Forest

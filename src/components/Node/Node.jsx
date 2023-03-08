@@ -36,7 +36,6 @@ function NodeEdittingMode(props) {
 
   const [onClick, setOnClick] = createSignal(false);
   const [title, setTitle] = createSignal("");
-  const [nodeStyle, setNodeStyle] = createSignal("");
 
   const isClicked = () => {
     setOnClick(!onClick());
@@ -62,8 +61,6 @@ function NodeEdittingMode(props) {
       alt="arrow-right-closed"
     />
   );
-
-
 
   let nodeChildren = props.children;
   let nodeTitle = props.title;
