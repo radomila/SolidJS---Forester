@@ -74,10 +74,12 @@ function App(props) {
         return {
           ...node,
           open: !node.open,
-          nestedNodes: onNestedNodeOpen(node.nestedNodes),
         };
       } else {
-        return node;
+        return {
+          ...node,
+          nestedNodes: onNestedNodeOpen(node.nestedNodes, id),
+        };
       }
     });
     setNodesLocal(newNodes);
@@ -89,31 +91,79 @@ function App(props) {
         return {
           ...node,
           open: !node.open,
-          nestedNodes: onNestedNodeOpen(node.nestedNodes, id),
         };
       } else {
-        return node;
+        return {
+          ...node,
+          nestedNodes: onNestedNodeOpen(node.nestedNodes, id),
+        };
       }
     });
   };
 
+  /* Create Before */
   const onCreateBefore = (id, node) => {
-    const newNodesAddedBefore = [...nodesLocal()];
-    const indexBefore = newNodesAddedBefore.findIndex((n) => n.id === id);
-    newNodesAddedBefore.splice(indexBefore, 0, node);
-    setNodesLocal(newNodesAddedBefore);
+    const list = [...nodesLocal()];
+    const createdBefore = list.map((n, index) => {
+      if (n.id === id) {
+        list.splice(index, 0, node);
+      } else if (n.nestedNodes) {
+        onCreateAfterRecursive(id, node, n.nestedNodes);
+      }
+      return n;
+    });
+    setNodesLocal(createdBefore);
   };
 
-  const onCreateAfter = (id, node) => {
-    const newNodesAdded = [...nodesLocal()];
-    const index = newNodesAdded.findIndex((n) => n.id === id);
-    newNodesAdded.splice(index + 1, 0, node);
-    setNodesLocal(newNodesAdded);
+  const onCreateBeforeRecursive = (id, node, nodes) => {
+    return nodes.map((n, index) => {
+      if (n.id === id) {
+        nodes.splice(index, 0, node);
+      } else if (n.nestedNodes) {
+        onCreateBeforeRecursive(id, node, n.nestedNodes);
+      }
+      return n;
+    });
   };
-  
+
+  /* Create After */
+  const onCreateAfter = (id, node) => {
+    const list = [...nodesLocal()];
+     list.map((n, index) => {
+      if (n.id === id) { 
+        list.splice(index + 1, 0, node);  
+        return n;
+      } else if (n.nestedNodes) {
+        return {
+          ...n,
+          nestedNodes: onCreateAfterRecursive(id, node, n.nestedNodes),
+        };
+      } else {
+        return n;
+      }
+    }); 
+    setNodesLocal(list);
+  };
+
+  const onCreateAfterRecursive = (id, node, nodes) => {
+    return nodes.map((n, index, arr) => {
+      if (n.id === id) {
+        nodes.splice(index + 1, 0, node); 
+        return n;
+      } else if (n.nestedNodes) {
+        return {
+          ...n,
+          nestedNodes: onCreateAfterRecursive(id, node, n.nestedNodes),
+        };
+      } else {
+        return n;
+      }
+    });
+  };
+
   /* Create Inside */
-  const onCreateInside = (id, node) => { 
-    const createdInside = onCreateInsideRecursive(id, node, nodesLocal()) 
+  const onCreateInside = (id, node) => {
+    const createdInside = onCreateInsideRecursive(id, node, nodesLocal());
     setNodesLocal(createdInside);
   };
 
@@ -123,10 +173,10 @@ function App(props) {
         n.nestedNodes.splice(0, 0, node);
       } else if (n.nestedNodes) {
         onCreateInsideRecursive(id, node, n.nestedNodes);
-      } 
+      }
       return n;
     });
-  }; 
+  };
 
   /* Delete */
   const onNodeDelete = (id) => {

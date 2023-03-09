@@ -21,7 +21,8 @@ function MenuNodes(props) {
 
     if (props.type === "Before") {
       setIsActive(
-        props.onCreateBefore(props.id, {
+        props.onCreateBefore(props.id, { 
+          id: Math.random() * 1000,
           type: node,
           title: node,
           open: true, 
@@ -30,7 +31,8 @@ function MenuNodes(props) {
       );
     } else if (props.type === "After") {
       setIsActive(
-        props.onCreateAfter(props.id, {
+        props.onCreateAfter(props.id, { 
+          id: Math.random() * 1000,
           type: node,
           title: node,
           open: true, 
@@ -39,7 +41,8 @@ function MenuNodes(props) {
       );
     } else if (props.type === "Inside") {
       setIsActive( 
-        props.onCreateInside(props.id,{
+        props.onCreateInside(props.id,{ 
+          id: Math.random() * 1000,
           type: node,
           title: node,
           open: true,
