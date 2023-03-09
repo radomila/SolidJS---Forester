@@ -48,23 +48,6 @@
   color: #ff0803;
 }
 
-.nodeSelection {
-  composes: nodeBase;
-  color: #09bda8;
-}
-
-.nodeSwitch {
-  composes: nodeBase;
-  color: #ff1570;
-}
-
-.nodeTcf {
-  composes: nodeBase;
-  color: #026beb;
-}
-
-/* Title */
-
 .nodeTitleBase {
   color: white;
   padding: 3px;
@@ -98,23 +81,6 @@
   background-color: #ff0803;
 }
 
-.nodeTitleSelection {
-  composes: nodeTitleBase;
-  background-color: #09bda8;
-}
-
-.nodeTitleSwitch {
-  composes: nodeTitleBase;
-  background-color: #ff1570;
-}
-
-.nodeTitleTcf {
-  composes: nodeTitleBase;
-  background-color: #026beb;
-}
-
-/* Menu - icon */
-
 .menuIconEditMode { 
   cursor: pointer; 
 }
@@ -133,7 +99,6 @@
   width: 100%;
 } 
 
-/* Toggle arrow */ 
 .toggleArrow { 
   padding-left: 10px;
   padding-right: 10px;

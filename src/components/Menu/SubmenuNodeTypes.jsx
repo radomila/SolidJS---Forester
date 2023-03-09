@@ -14,9 +14,6 @@ function MenuNodes(props) {
     "Warning",
     "Error",
     "Sequence",
-    "Selection",
-    "Switch",
-    "Try-Catch-Finally",
   ];
 
   const isClickedFunc = (node) => {

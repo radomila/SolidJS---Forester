@@ -49,13 +49,6 @@ export const forestConfig = [
                 open: true,
                 nestedNodes: [],
               },
-              {
-                id: 8,
-                type: "Success",
-                title: "Success",
-                open: true,
-                nestedNodes: [],
-              },
             ],
           },
         ],
@@ -67,20 +60,13 @@ export const forestConfig = [
         open: true,
         nestedNodes: [],
       },
-      {
-        id: 10,
-        type: "Selection",
-        title: "Selection",
-        open: true,
-        nestedNodes: [],
-      },
     ],
   },
 ];
 
 function App(props) {
   const [nodesLocal, setNodesLocal] = createSignal(forestConfig);
-  const [mode, setMode] = createSignal("Standard");
+  const [mode, setMode] = createSignal("Compact");
 
   const onNodeOpen = (id) => {
     const newNodes = nodesLocal().map((node) => {
@@ -88,12 +74,27 @@ function App(props) {
         return {
           ...node,
           open: !node.open,
+          nestedNodes: onNestedNodeOpen(node.nestedNodes),
         };
       } else {
         return node;
       }
     });
     setNodesLocal(newNodes);
+  };
+
+  const onNestedNodeOpen = (nodes, id) => {
+    return nodes.map((node) => {
+      if (node.id === id) {
+        return {
+          ...node,
+          open: !node.open,
+          nestedNodes: onNestedNodeOpen(node.nestedNodes, id),
+        };
+      } else {
+        return node;
+      }
+    });
   };
 
   const onCreateBefore = (id, node) => {
@@ -109,14 +110,25 @@ function App(props) {
     newNodesAdded.splice(index + 1, 0, node);
     setNodesLocal(newNodesAdded);
   };
-
-  const onCreateInside = (id, node) => {
-    const newList = [...nodesLocal()];
-    const index = newList.findIndex((n) => n.id === id);
-    newList[index].nestedNodes.splice(0, 0, node);
-    setNodesLocal(newList);
+  
+  /* Create Inside */
+  const onCreateInside = (id, node) => { 
+    const createdInside = onCreateInsideRecursive(id, node, nodesLocal()) 
+    setNodesLocal(createdInside);
   };
 
+  const onCreateInsideRecursive = (id, node, nodes) => {
+    return nodes.map((n) => {
+      if (n.id === id) {
+        n.nestedNodes.splice(0, 0, node);
+      } else if (n.nestedNodes) {
+        onCreateInsideRecursive(id, node, n.nestedNodes);
+      } 
+      return n;
+    });
+  }; 
+
+  /* Delete */
   const onNodeDelete = (id) => {
     const newForest = nodesLocal().filter((n) => {
       if (n.id === id) {

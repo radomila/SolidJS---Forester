@@ -15,17 +15,11 @@ import {
   nodeSuccess,
   nodeWarning,
   nodeError,
-  nodeSelection,
-  nodeSwitch,
-  nodeTcf,
   nodeTitleSequence,
   nodeTitleStep,
   nodeTitleSuccess,
   nodeTitleWarning,
   nodeTitleError,
-  nodeTitleSelection,
-  nodeTitleSwitch,
-  nodeTitleTcf,
   menuIconEditMode,
   inputSection,
   toggleArrow,
@@ -89,18 +83,6 @@ function NodeEdittingMode(props) {
       nodeType = nodeError;
       nodeTitleType = nodeTitleError;
       break;
-    case type == "Selection":
-      nodeType = nodeSelection;
-      nodeTitleType = nodeTitleSelection;
-      break;
-    case type == "Switch":
-      nodeType = nodeSwitch;
-      nodeTitleType = nodeTitleSwitch;
-      break;
-    case type == "Try-Catch-Finally":
-      nodeType = nodeTcf;
-      nodeTitleType = nodeTitleTcf;
-      break;
     default:
       nodeType = nodeBase;
       nodeTitleType = nodeTitleBase;
@@ -109,7 +91,7 @@ function NodeEdittingMode(props) {
   return (
     <>
       {/*Typ nodu*/}
-      <div class={`${props.mode === 'Standard' ? nodeType : ''}`}>
+      <div class={`${props.mode === "Standard" ? nodeType : ""}`}>
         <div class={nodeSection}>
           {props.open ? ArrowOpened : ArrowClosed}
           {/* Sekce pro input, nazev nodu */}

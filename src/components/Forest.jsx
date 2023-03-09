@@ -1,16 +1,15 @@
-import { createSignal } from "solid-js";
-import Node from "./Node/Node.jsx";
+import Node from "./Node/Node.jsx"; 
 import { forestContentStandard, forestContentCompact } from "../App.module.css";
 
-function Forest(props) {
-  let { depth = 0 } = props;
+function Forest(props) { 
+  let { depth = 0 } = props; 
 
   const maxDepth = 6;
   if (depth > maxDepth) {
     console.log(depth);
     return null;
-  }
-
+  }; 
+ 
   return (
     <>
       <div
