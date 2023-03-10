@@ -103,35 +103,46 @@ function App(props) {
 
   /* Create Before */
   const onCreateBefore = (id, node) => {
-    const list = [...nodesLocal()];
-    const createdBefore = list.map((n, index) => {
-      if (n.id === id) {
-        list.splice(index, 0, node);
-      } else if (n.nestedNodes) {
-        onCreateAfterRecursive(id, node, n.nestedNodes);
-      }
+  let isNodeAdded = false; 
+  const list = [...nodesLocal()];
+  list.map((n, index) => {
+    if (!isNodeAdded && n.id === id) { 
+      list.splice(index, 0, node);
+      isNodeAdded = true;
+    } else if (n.nestedNodes) {
+      return {
+        ...n,
+        nestedNodes: onCreateBeforeRecursive(id, node, n.nestedNodes),
+      };
+    } else {
       return n;
-    });
-    setNodesLocal(createdBefore);
-  };
-
-  const onCreateBeforeRecursive = (id, node, nodes) => {
+    }
+  });
+  setNodesLocal(list);
+};
+  const onCreateBeforeRecursive = (id, node, nodes) => { 
+    let isNodeAdded = false;
     return nodes.map((n, index) => {
-      if (n.id === id) {
-        nodes.splice(index, 0, node);
+      if (!isNodeAdded && n.id === id) {
+        nodes.splice(index, 0, node); 
+        isNodeAdded = true;
       } else if (n.nestedNodes) {
-        onCreateBeforeRecursive(id, node, n.nestedNodes);
+        return {
+          ...n,
+          nestedNodes: onCreateBeforeRecursive(id, node, n.nestedNodes),
+        };
+      } else {
+        return n;
       }
-      return n;
     });
   };
 
   /* Create After */
   const onCreateAfter = (id, node) => {
     const list = [...nodesLocal()];
-     list.map((n, index) => {
-      if (n.id === id) { 
-        list.splice(index + 1, 0, node);  
+    list.map((n, index) => {
+      if (n.id === id) {
+        list.splice(index + 1, 0, node); 
         return n;
       } else if (n.nestedNodes) {
         return {
@@ -141,14 +152,14 @@ function App(props) {
       } else {
         return n;
       }
-    }); 
+    });
     setNodesLocal(list);
   };
 
   const onCreateAfterRecursive = (id, node, nodes) => {
-    return nodes.map((n, index, arr) => {
+    return nodes.map((n, index) => {
       if (n.id === id) {
-        nodes.splice(index + 1, 0, node); 
+        nodes.splice(index + 1, 0, node);
         return n;
       } else if (n.nestedNodes) {
         return {
