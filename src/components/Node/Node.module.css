@@ -99,7 +99,8 @@
   width: 100%;
 } 
 
-.toggleArrow { 
+.toggleArrow {  
+  cursor: pointer;
   padding-left: 10px;
   padding-right: 10px;
 }

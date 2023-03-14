@@ -8,6 +8,7 @@ export const forestConfig = [
     type: "Sequence",
     title: "Sequence",
     open: true,
+    header: "",
     nestedNodes: [],
   },
   {
@@ -15,12 +16,14 @@ export const forestConfig = [
     type: "Sequence",
     title: "Sequence",
     open: true,
+    header: "",
     nestedNodes: [
       {
         id: 3,
         type: "Step",
         title: "Step",
         open: true,
+        header: "",
         nestedNodes: [],
       },
       {
@@ -28,18 +31,21 @@ export const forestConfig = [
         type: "Sequence",
         title: "Sequence",
         open: true,
+        header: "",
         nestedNodes: [
           {
             id: 5,
             type: "Sequence",
             title: "Sequence",
             open: true,
+            header: "",
             nestedNodes: [
               {
                 id: 6,
                 type: "Step",
                 title: "Step",
                 open: true,
+                header: "",
                 nestedNodes: [],
               },
               {
@@ -47,6 +53,7 @@ export const forestConfig = [
                 type: "Error",
                 title: "Error",
                 open: true,
+                header: "",
                 nestedNodes: [],
               },
             ],
@@ -58,6 +65,7 @@ export const forestConfig = [
         type: "Success",
         title: "Success",
         open: true,
+        header: "",
         nestedNodes: [],
       },
     ],
@@ -67,6 +75,39 @@ export const forestConfig = [
 function App(props) {
   const [nodesLocal, setNodesLocal] = createSignal(forestConfig);
   const [mode, setMode] = createSignal("Compact");
+
+  const setHeader = (id, newHeader) => {
+    const newNodes = nodesLocal().map((node) => {
+      if (node.id === id) {
+        return {
+          ...node,
+          header: newHeader
+        };
+      } else {
+        return {
+          ...node,
+          nestedNodes: setHeaderRecursive(id, node.nestedNodes, newHeader)
+        };
+      }
+    });
+    setNodesLocal(newNodes);
+  };
+
+  const setHeaderRecursive = (id, nodes, newHeader) => {
+    return nodes.map((node) => {
+      if (node.id === id) {
+        return {
+          ...node,
+          header: newHeader,
+        };
+      } else {
+        return {
+          ...node,
+          nestedNodes: setHeaderRecursive(id, node.nestedNodes, newHeader)
+        };
+      }
+    });
+  };
 
   const onNodeOpen = (id) => {
     const newNodes = nodesLocal().map((node) => {
@@ -103,28 +144,28 @@ function App(props) {
 
   /* Create Before */
   const onCreateBefore = (id, node) => {
-  let isNodeAdded = false; 
-  const list = [...nodesLocal()];
-  list.map((n, index) => {
-    if (!isNodeAdded && n.id === id) { 
-      list.splice(index, 0, node);
-      isNodeAdded = true;
-    } else if (n.nestedNodes) {
-      return {
-        ...n,
-        nestedNodes: onCreateBeforeRecursive(id, node, n.nestedNodes),
-      };
-    } else {
-      return n;
-    }
-  });
-  setNodesLocal(list);
-};
-  const onCreateBeforeRecursive = (id, node, nodes) => { 
+    let isNodeAdded = false;
+    const list = [...nodesLocal()];
+    list.map((n, index) => {
+      if (!isNodeAdded && n.id === id) {
+        list.splice(index, 0, node);
+        isNodeAdded = true;
+      } else if (n.nestedNodes) {
+        return {
+          ...n,
+          nestedNodes: onCreateBeforeRecursive(id, node, n.nestedNodes),
+        };
+      } else {
+        return n;
+      }
+    });
+    setNodesLocal(list);
+  };
+  const onCreateBeforeRecursive = (id, node, nodes) => {
     let isNodeAdded = false;
     return nodes.map((n, index) => {
       if (!isNodeAdded && n.id === id) {
-        nodes.splice(index, 0, node); 
+        nodes.splice(index, 0, node);
         isNodeAdded = true;
       } else if (n.nestedNodes) {
         return {
@@ -142,7 +183,7 @@ function App(props) {
     const list = [...nodesLocal()];
     list.map((n, index) => {
       if (n.id === id) {
-        list.splice(index + 1, 0, node); 
+        list.splice(index + 1, 0, node);
         return n;
       } else if (n.nestedNodes) {
         return {
@@ -276,7 +317,8 @@ function App(props) {
         onCreateBefore={onCreateBefore}
         onCreateAfter={onCreateAfter}
         onCreateInside={onCreateInside}
-        onNodeDelete={onNodeDelete}
+        onNodeDelete={onNodeDelete} 
+        setHeader={setHeader}
       />
     </div>
   );

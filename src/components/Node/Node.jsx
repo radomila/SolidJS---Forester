@@ -26,10 +26,9 @@ import {
 } from "./Node.module.css";
 
 function NodeEdittingMode(props) {
-  const [isEdit] = useAppState();
+  const [isEdit] = useAppState(); 
 
   const [onClick, setOnClick] = createSignal(false);
-  const [title, setTitle] = createSignal("");
 
   const isClicked = () => {
     setOnClick(!onClick());
@@ -99,11 +98,11 @@ function NodeEdittingMode(props) {
             <div class={clsx(nodeTitleType)}>{nodeTitle}</div>
             {isEdit() ? (
               <NodeTextInput
-                value={title()}
-                onChange={(e) => setTitle(e.target.value)}
+                value={props.header}
+                onChange={(e) => props.setHeader(props.id, e.target.value)}
               />
             ) : (
-              title()
+              props.header
             )}
           </div>
           {/* Button pro menu */}

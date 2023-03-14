@@ -25,7 +25,8 @@ function MenuNodes(props) {
           id: Math.random() * 1000,
           type: node,
           title: node,
-          open: true, 
+          open: true,  
+          header: "",
           nestedNodes: []
         })
       );
@@ -36,6 +37,7 @@ function MenuNodes(props) {
           type: node,
           title: node,
           open: true, 
+          header: "",
           nestedNodes: []
         })
       );
@@ -45,7 +47,8 @@ function MenuNodes(props) {
           id: Math.random() * 1000,
           type: node,
           title: node,
-          open: true,
+          open: true, 
+          header: "",
           nestedNodes: []
         })
       )

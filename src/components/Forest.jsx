@@ -6,7 +6,6 @@ function Forest(props) {
 
   const maxDepth = 6;
   if (depth > maxDepth) {
-    console.log(depth);
     return null;
   }; 
  
@@ -27,10 +26,12 @@ function Forest(props) {
                 onNodeDelete={props.onNodeDelete}
                 onCreateBefore={props.onCreateBefore}
                 onCreateInside={props.onCreateInside}
-                onCreateAfter={props.onCreateAfter}
+                onCreateAfter={props.onCreateAfter} 
+                setHeader={props.setHeader}
                 key={node.title + index}
                 type={node.type}
-                title={node.title}
+                title={node.title} 
+                header={node.header}
                 id={node.id}
                 open={node.open}
                 mode={props.mode}
@@ -44,7 +45,8 @@ function Forest(props) {
                     onCreateBefore={props.onCreateBefore}
                     onCreateAfter={props.onCreateAfter}
                     onCreateInside={props.onCreateInside}
-                    onNodeDelete={props.onNodeDelete}
+                    onNodeDelete={props.onNodeDelete} 
+                    setHeader={props.setHeader}
                   />
                 )}
               </Node>
