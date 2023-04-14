@@ -142,7 +142,6 @@ function App(props) {
     });
   };
 
-  /* Create Before */
   const onCreateBefore = (id, node) => {
     let isNodeAdded = false;
     const list = [...nodesLocal()];

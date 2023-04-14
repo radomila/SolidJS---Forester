@@ -2,8 +2,8 @@ import { buttonImage } from "./Button.module.css";
 import { createSignal } from "solid-js";
 import Button from "./Button";
 import Standard from "../Menu/Standard";
-import ArrowDown from "../../icons/arrow-down.png";
-import ArrowUp from "../../icons/arrow-up.png";
+import ArrowDown from "../../icons/arrow-down.svg";
+import ArrowUp from "../../icons/arrow-up.svg";
 
 function Dropdown(props) {
   const [isOpen, setIsOpen] = createSignal(false);
